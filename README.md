@@ -1,2 +1,3 @@
-# qa-automation-project
-Automation project for API and Web testing with CI/CD
+# QA Automation Project
+
+Projeto de automação de testes para API e Web com integração contínua (CI/CD).
