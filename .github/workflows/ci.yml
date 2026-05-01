@@ -10,19 +10,25 @@ jobs:
 
     steps:
       - name: Checkout código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: Instalar dependências
+      - name: Instalar Google Chrome
         run: |
-          pip install -r requirements.txt
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
 
       - name: Rodar testes API
-        run: PYTHONPATH=. pytest api_tests
+        run: PYTHONPATH=. pytest api_tests -v
 
       - name: Rodar testes WEB
-        run: PYTHONPATH=. pytest web_tests
+        run: PYTHONPATH=. pytest web_tests -v

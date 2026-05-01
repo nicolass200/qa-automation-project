@@ -1,12 +1,15 @@
 from selenium.webdriver.common.by import By
+from web_tests.base.base_page import BasePage
 
-class InventoryPage:
 
-    def __init__(self, driver):
-        self.driver = driver
+class InventoryPage(BasePage):
 
-    def add_product(self):
-        self.driver.find_element(By.CLASS_NAME, "btn_inventory").click()
+    _ADD_TO_CART = (By.CLASS_NAME, "btn_inventory")
+    _CART_LINK = (By.CLASS_NAME, "shopping_cart_link")
 
-    def go_to_cart(self):
-        self.driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
+    def add_product(self) -> None:
+        self.click(self._ADD_TO_CART)
+
+    def go_to_cart(self) -> None:
+        self.click(self._CART_LINK)
+        self.wait_for_url("cart")

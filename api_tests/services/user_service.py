@@ -1,12 +1,17 @@
-import requests
+from requests import Response
+from api_tests.services.base_service import BaseService
 
-BASE_URL = "https://petstore.swagger.io/v2"
 
-def create_user(user_data):
-    return requests.post(f"{BASE_URL}/user", json=user_data)
+class UserService(BaseService):
 
-def get_user(username):
-    return requests.get(f"{BASE_URL}/user/{username}")
+    @classmethod
+    def create(cls, user: dict) -> Response:
+        return cls.post("/user", user)
 
-def delete_user(username):
-    return requests.delete(f"{BASE_URL}/user/{username}")
+    @classmethod
+    def get(cls, username: str) -> Response:
+        return super().get(f"/user/{username}")
+
+    @classmethod
+    def delete(cls, username: str) -> Response:
+        return super().delete(f"/user/{username}")
