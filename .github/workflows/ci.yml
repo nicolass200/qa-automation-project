@@ -22,7 +22,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Rodar testes API
-        run: pytest api_tests
+        run: PYTHONPATH=. pytest api_tests
 
       - name: Rodar testes WEB
-        run: pytest web_tests
+        run: PYTHONPATH=. pytest web_tests
