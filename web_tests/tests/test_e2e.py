@@ -21,4 +21,7 @@ class TestE2E(BaseTest):
         checkout.fill_data()
         checkout.finish()
 
-        assert "checkout-complete" in self.driver.current_url
+        from selenium.webdriver.common.by import By
+
+        success = self.driver.find_element(By.CLASS_NAME, "complete-header").text
+        assert "THANK YOU" in success.upper()
