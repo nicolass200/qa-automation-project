@@ -10,15 +10,12 @@ def test_create_get_delete_order():
         "complete": True
     }
 
-    # Criar pedido
     response = create_order(order)
     assert response.status_code == 200
 
-    # Buscar pedido
     response = get_order(order["id"])
     assert response.status_code == 200
     assert response.json()["id"] == order["id"]
 
-    # Deletar pedido
     response = delete_order(order["id"])
     assert response.status_code == 200

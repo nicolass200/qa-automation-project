@@ -12,15 +12,12 @@ def test_create_and_get_user():
         "userStatus": 1
     }
 
-    # Criar usuário
     response = create_user(user)
     assert response.status_code == 200
 
-    # Buscar usuário
     response = get_user(user["username"])
     assert response.status_code == 200
     assert response.json()["username"] == user["username"]
 
-    # Deletar usuário
     response = delete_user(user["username"])
     assert response.status_code == 200
