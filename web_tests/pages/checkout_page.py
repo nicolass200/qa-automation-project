@@ -16,9 +16,10 @@ class CheckoutPage(BasePage):
         self.type_text(self._LAST_NAME, last)
         self.type_text(self._POSTAL_CODE, postal)
         self.click(self._CONTINUE)
+        self.wait_for_url("checkout-step-two")  # ← movido para cá
 
     def finish(self) -> None:
-        self.wait_for_url("checkout-step-two")
+        # URL já garantida pelo fill_data(), espera direto pelo botão
         finish_btn = self.find(self._FINISH)
         self.scroll_to(finish_btn)
         self.click(self._FINISH)
