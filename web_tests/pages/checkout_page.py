@@ -14,8 +14,16 @@ class CheckoutPage:
         self.driver.find_element(By.ID, "continue").click()
 
     def finish(self):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 20)
+
+        wait.until(EC.url_contains("checkout-step-two"))
+
         finish_button = wait.until(
-            EC.element_to_be_clickable((By.ID, "finish"))
+            EC.presence_of_element_located((By.ID, "finish"))
         )
+
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", finish_button)
+
+        wait.until(EC.element_to_be_clickable((By.ID, "finish")))
+
         finish_button.click()
