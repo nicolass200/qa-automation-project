@@ -11,7 +11,7 @@ class TestE2E(BaseTest):
 
     def test_complete_purchase(self) -> None:
         LoginPage(self.driver).login(Config.VALID_USER, Config.VALID_PASSWORD)
-        
+
         inventory = InventoryPage(self.driver)
         inventory.add_product()
         inventory.go_to_cart()

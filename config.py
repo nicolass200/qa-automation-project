@@ -1,14 +1,9 @@
-# Configurações globais do projeto. Altere aqui, reflete em todo o código.
-
 class Config:
-    # API
-    API_BASE_URL = "https://petstore.swagger.io/v2"
-    API_TIMEOUT = 10  # segundos
+    API_BASE_URL   = "https://petstore.swagger.io/v2"
+    API_TIMEOUT    = 10
 
-    # Web
-    WEB_BASE_URL = "https://www.saucedemo.com/"
-    WAIT_TIMEOUT = 15  # segundos
+    WEB_BASE_URL   = "https://www.saucedemo.com/"
+    WAIT_TIMEOUT   = 30  # aumentado: CI é mais lento que máquina local
 
-    # Credenciais de teste
-    VALID_USER = "standard_user"
+    VALID_USER     = "standard_user"
     VALID_PASSWORD = "secret_sauce"
