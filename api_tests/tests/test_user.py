@@ -1,21 +1,20 @@
 import pytest
 from api_tests.services.user_service import UserService
 
-# ID único por módulo evita colisão em execuções paralelas
 USER_ID = 2001
+USERNAME = "nicolas_test"
 
 
 @pytest.fixture(autouse=True)
 def cleanup():
-    """Garante limpeza mesmo se o teste falhar."""
     yield
-    UserService.delete("nicolas_test")
+    UserService.delete(USERNAME)
 
 
 def test_create_and_get_user():
     user = {
         "id": USER_ID,
-        "username": "nicolas_test",
+        "username": USERNAME,
         "firstName": "Nicolas",
         "lastName": "Test",
         "email": "nicolas@test.com",
@@ -26,9 +25,9 @@ def test_create_and_get_user():
 
     assert UserService.create(user).status_code == 200
 
-    response = UserService.get(user["username"])
+    response = UserService.get(USERNAME)
     assert response.status_code == 200
-    assert response.json()["username"] == user["username"]
+    assert response.json()["username"] == USERNAME
 
 
 def test_get_nonexistent_user():
