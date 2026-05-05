@@ -1,1 +1,8 @@
 desktop.ini
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+screenshots/
+venv/
+.env
