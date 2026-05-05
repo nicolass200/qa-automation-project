@@ -4,7 +4,6 @@ from config import Config
 
 
 class BaseService:
-    """Encapsula chamadas HTTP com timeout e URL base centralizados."""
 
     BASE_URL = Config.API_BASE_URL
     TIMEOUT = Config.API_TIMEOUT

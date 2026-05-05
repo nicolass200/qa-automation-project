@@ -1,7 +1,6 @@
 # QA Automation Project
 
 Projeto de automação de testes para API e Web com integração contínua (CI/CD).
-Estou com limitação técnica no ambiente agora para gerar o arquivo. Mas o conteúdo completo está aqui — copia e cria o `README.md` na raiz do projeto:
 
 ```markdown
 # qa-automation-project
@@ -24,42 +23,6 @@ Projeto de automação de testes cobrindo API REST e fluxo Web E2E, com execuç�
 | CI/CD | GitHub Actions |
 
 ---
-
-## Estrutura do Projeto
-
-```
-qa-automation-project/
-│
-├── api_tests/
-│   ├── services/
-│   │   ├── base_service.py
-│   │   ├── user_service.py
-│   │   ├── pet_service.py
-│   │   └── store_service.py
-│   └── tests/
-│       ├── test_user.py
-│       ├── test_pet.py
-│       └── test_store.py
-│
-├── web_tests/
-│   ├── base/
-│   │   ├── base_page.py
-│   │   └── base_test.py
-│   ├── pages/
-│   │   ├── login_page.py
-│   │   ├── inventory_page.py
-│   │   ├── cart_page.py
-│   │   └── checkout_page.py
-│   └── tests/
-│       └── test_e2e.py
-│
-├── config.py
-├── requirements.txt
-└── .github/workflows/ci.yml
-```
-
----
-
 ## Instalação
 
 **Pré-requisitos:** Python 3.10+ e Google Chrome instalados.
