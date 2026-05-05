@@ -20,14 +20,12 @@ class BasePage:
         try:
             element.click()
         except Exception:
-            # JS click como fallback — funciona mesmo quando o clique nativo falha no headless
             self.driver.execute_script("arguments[0].click();", element)
 
     def type_text(self, locator: tuple, text: str) -> None:
         self.find(locator).send_keys(text)
 
     def navigate_to(self, path: str) -> None:
-        """Navegação direta por URL — mais confiável que clicar em links no CI."""
         self.driver.get(f"{Config.WEB_BASE_URL}{path}")
 
     def scroll_to(self, element: WebElement) -> None:

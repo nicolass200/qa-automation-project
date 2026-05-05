@@ -24,5 +24,5 @@ class TestE2E(BaseTest):
 
         success_text = self.driver.find_element(By.CLASS_NAME, "complete-header").text
         assert "THANK YOU" in success_text.upper(), (
-            f"Compra não finalizada. Texto encontrado: '{success_text}'"
+            f"Texto encontrado: '{success_text}'"
         )

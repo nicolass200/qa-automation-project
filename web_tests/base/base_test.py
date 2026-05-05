@@ -15,11 +15,8 @@ class BaseTest:
         )
         self.driver.get(Config.WEB_BASE_URL)
 
-    def teardown_method(self, method) -> None:
+    def teardown_method(self, method=None) -> None:
         if self.driver:
-            # salva screenshot sempre que o teste falhar
-            if hasattr(method, '__self__'):
-                pass
             os.makedirs("screenshots", exist_ok=True)
             self.driver.save_screenshot("screenshots/failure.png")
             self.driver.quit()

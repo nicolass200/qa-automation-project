@@ -3,7 +3,7 @@ class Config:
     API_TIMEOUT    = 10
 
     WEB_BASE_URL   = "https://www.saucedemo.com/"
-    WAIT_TIMEOUT   = 30  # aumentado: CI é mais lento que máquina local
+    WAIT_TIMEOUT   = 30
 
     VALID_USER     = "standard_user"
     VALID_PASSWORD = "secret_sauce"

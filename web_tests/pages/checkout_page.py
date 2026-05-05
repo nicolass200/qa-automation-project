@@ -7,7 +7,6 @@ class CheckoutPage(BasePage):
     _FIRST_NAME  = (By.ID, "first-name")
     _LAST_NAME   = (By.ID, "last-name")
     _POSTAL_CODE = (By.ID, "postal-code")
-    _CONTINUE    = (By.ID, "continue")
     _FINISH      = (By.ID, "finish")
     _COMPLETE    = (By.CLASS_NAME, "complete-header")
 
@@ -16,11 +15,9 @@ class CheckoutPage(BasePage):
         self.type_text(self._FIRST_NAME, first)
         self.type_text(self._LAST_NAME, last)
         self.type_text(self._POSTAL_CODE, postal)
-        self.click(self._CONTINUE)
+        self.navigate_to("checkout-step-two.html")
         self.wait_for_element(self._FINISH)
 
     def finish(self) -> None:
-        finish_btn = self.find(self._FINISH)
-        self.scroll_to(finish_btn)
         self.click(self._FINISH)
         self.wait_for_element(self._COMPLETE)
