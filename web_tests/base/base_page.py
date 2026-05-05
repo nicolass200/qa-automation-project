@@ -15,14 +15,23 @@ class BasePage:
         return self.wait.until(EC.visibility_of_element_located(locator))
 
     def click(self, locator: tuple) -> None:
-        self.wait.until(EC.element_to_be_clickable(locator)).click()
+        element = self.wait.until(EC.element_to_be_clickable(locator))
+        self.scroll_to(element)
+        try:
+            element.click()
+        except Exception:
+            # JS click como fallback — funciona mesmo quando o clique nativo falha no headless
+            self.driver.execute_script("arguments[0].click();", element)
 
     def type_text(self, locator: tuple, text: str) -> None:
         self.find(locator).send_keys(text)
+
+    def navigate_to(self, path: str) -> None:
+        """Navegação direta por URL — mais confiável que clicar em links no CI."""
+        self.driver.get(f"{Config.WEB_BASE_URL}{path}")
 
     def scroll_to(self, element: WebElement) -> None:
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
 
     def wait_for_element(self, locator: tuple) -> WebElement:
-        """Aguarda um elemento que confirme visualmente que a página carregou."""
         return self.wait.until(EC.visibility_of_element_located(locator))

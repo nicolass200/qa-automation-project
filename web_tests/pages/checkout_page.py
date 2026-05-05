@@ -16,12 +16,7 @@ class CheckoutPage(BasePage):
         self.type_text(self._FIRST_NAME, first)
         self.type_text(self._LAST_NAME, last)
         self.type_text(self._POSTAL_CODE, postal)
-
-        # scroll garante que o botão está visível antes de clicar
-        continue_btn = self.find(self._CONTINUE)
-        self.scroll_to(continue_btn)
         self.click(self._CONTINUE)
-
         self.wait_for_element(self._FINISH)
 
     def finish(self) -> None:

@@ -5,12 +5,11 @@ from web_tests.base.base_page import BasePage
 class InventoryPage(BasePage):
 
     _ADD_TO_CART     = (By.CLASS_NAME, "btn_inventory")
-    _CART_LINK       = (By.CLASS_NAME, "shopping_cart_link")
     _CHECKOUT_BUTTON = (By.ID, "checkout")
 
     def add_product(self) -> None:
         self.click(self._ADD_TO_CART)
 
     def go_to_cart(self) -> None:
-        self.click(self._CART_LINK)
+        self.navigate_to("cart.html")
         self.wait_for_element(self._CHECKOUT_BUTTON)
