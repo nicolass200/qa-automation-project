@@ -1,12 +1,17 @@
-import requests
+from requests import Response
+from api_tests.services.base_service import BaseService
 
-BASE_URL = "https://petstore.swagger.io/v2"
 
-def create_pet(pet_data):
-    return requests.post(f"{BASE_URL}/pet", json=pet_data)
+class PetService(BaseService):
 
-def get_pet(pet_id):
-    return requests.get(f"{BASE_URL}/pet/{pet_id}")
+    @classmethod
+    def create(cls, pet: dict) -> Response:
+        return cls.post("/pet", pet)
 
-def update_pet(pet_data):
-    return requests.put(f"{BASE_URL}/pet", json=pet_data)
+    @classmethod
+    def get(cls, pet_id: int) -> Response:
+        return super().get(f"/pet/{pet_id}")
+
+    @classmethod
+    def update(cls, pet: dict) -> Response:
+        return cls.put("/pet", pet)

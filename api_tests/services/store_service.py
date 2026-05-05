@@ -1,12 +1,17 @@
-import requests
+from requests import Response
+from api_tests.services.base_service import BaseService
 
-BASE_URL = "https://petstore.swagger.io/v2"
 
-def create_order(order_data):
-    return requests.post(f"{BASE_URL}/store/order", json=order_data)
+class StoreService(BaseService):
 
-def get_order(order_id):
-    return requests.get(f"{BASE_URL}/store/order/{order_id}")
+    @classmethod
+    def create(cls, order: dict) -> Response:
+        return cls.post("/store/order", order)
 
-def delete_order(order_id):
-    return requests.delete(f"{BASE_URL}/store/order/{order_id}")
+    @classmethod
+    def get_order(cls, order_id: int) -> Response:
+        return super().get(f"/store/order/{order_id}")
+
+    @classmethod
+    def delete_order(cls, order_id: int) -> Response:
+        return super().delete(f"/store/order/{order_id}")
