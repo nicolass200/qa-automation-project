@@ -4,9 +4,8 @@ from web_tests.base.base_page import BasePage
 
 class CartPage(BasePage):
 
-    _CHECKOUT_BUTTON = (By.ID, "checkout")
-    _FIRST_NAME      = (By.ID, "first-name")
+    _FIRST_NAME = (By.ID, "first-name")
 
     def checkout(self) -> None:
-        self.click(self._CHECKOUT_BUTTON)
+        self.navigate_to("checkout-step-one.html")
         self.wait_for_element(self._FIRST_NAME)
