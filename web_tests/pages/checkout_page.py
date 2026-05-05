@@ -9,17 +9,23 @@ class CheckoutPage(BasePage):
     _POSTAL_CODE = (By.ID, "postal-code")
     _CONTINUE    = (By.ID, "continue")
     _FINISH      = (By.ID, "finish")
-    _COMPLETE    = (By.CLASS_NAME, "complete-header")  # confirma compra finalizada
+    _COMPLETE    = (By.CLASS_NAME, "complete-header")
 
     def fill_data(self, first: str = "Nicolas", last: str = "Test", postal: str = "12345") -> None:
+        self.wait_for_element(self._FIRST_NAME)
         self.type_text(self._FIRST_NAME, first)
         self.type_text(self._LAST_NAME, last)
         self.type_text(self._POSTAL_CODE, postal)
+
+        # scroll garante que o botão está visível antes de clicar
+        continue_btn = self.find(self._CONTINUE)
+        self.scroll_to(continue_btn)
         self.click(self._CONTINUE)
-        self.wait_for_element(self._FINISH)  # espera botão finish aparecer
+
+        self.wait_for_element(self._FINISH)
 
     def finish(self) -> None:
         finish_btn = self.find(self._FINISH)
         self.scroll_to(finish_btn)
         self.click(self._FINISH)
-        self.wait_for_element(self._COMPLETE)  # espera tela de confirmação
+        self.wait_for_element(self._COMPLETE)
