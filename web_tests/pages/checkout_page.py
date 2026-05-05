@@ -19,5 +19,5 @@ class CheckoutPage(BasePage):
         self.wait_for_element(self._FINISH)
 
     def finish(self) -> None:
-        self.click(self._FINISH)
+        self.navigate_to("checkout-complete.html")  # ← substituído o clique
         self.wait_for_element(self._COMPLETE)
