@@ -25,3 +25,11 @@ jobs:
 
       - name: Rodar testes WEB
         run: PYTHONPATH=. pytest web_tests -v
+
+      # salva o screenshot como artefato mesmo se o teste falhar
+      - name: Upload screenshot de falha
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-falha
+          path: screenshots/failure.png

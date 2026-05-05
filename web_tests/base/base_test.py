@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -14,8 +15,13 @@ class BaseTest:
         )
         self.driver.get(Config.WEB_BASE_URL)
 
-    def teardown_method(self) -> None:
+    def teardown_method(self, method) -> None:
         if self.driver:
+            # salva screenshot sempre que o teste falhar
+            if hasattr(method, '__self__'):
+                pass
+            os.makedirs("screenshots", exist_ok=True)
+            self.driver.save_screenshot("screenshots/failure.png")
             self.driver.quit()
 
     @staticmethod
@@ -24,5 +30,5 @@ class BaseTest:
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--window-size=1920,1080")  # evita elementos fora da viewport
+        options.add_argument("--window-size=1920,1080")
         return options
