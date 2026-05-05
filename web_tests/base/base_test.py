@@ -17,8 +17,6 @@ class BaseTest:
 
     def teardown_method(self, method=None) -> None:
         if self.driver:
-            os.makedirs("screenshots", exist_ok=True)
-            self.driver.save_screenshot("screenshots/failure.png")
             self.driver.quit()
 
     @staticmethod

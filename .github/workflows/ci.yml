@@ -21,14 +21,14 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Rodar testes API
-        run: PYTHONPATH=. pytest api_tests -v
+        run: PYTHONPATH=. pytest api_tests -v --html=reports/api-report.html --self-contained-html
 
       - name: Rodar testes WEB
-        run: PYTHONPATH=. pytest web_tests -v
+        run: PYTHONPATH=. pytest web_tests -v --html=reports/web-report.html --self-contained-html
 
-      - name: Upload screenshot de falha
-        if: failure()
+      - name: Upload relatórios
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot-falha
-          path: screenshots/failure.png
+          name: test-reports
+          path: reports/
