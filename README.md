@@ -140,3 +140,22 @@ Pipeline executa automaticamente a cada `push` ou `pull request`:
 3. Execução dos testes de API
 4. Execução dos testes Web (Chrome headless)
 5. Upload do screenshot em caso de falha
+
+## Prints
+### Prints das telas
+### Tela de login
+![Login](docs/login.png)
+
+### Tela de produtos após login
+![Produtos](docs/produtos.png)
+
+### Carrinho com produto adicionado
+![Carrinho](docs/carrinho.png)
+### Tela de checkout com preenchimento dos dados
+![Checkout](docs/checkout.png)
+
+### checkout da compra
+![Checkout](docs/checkout.png)
+
+### Confirmação de compra
+![Confirmação](docs/confirmacao.png)
