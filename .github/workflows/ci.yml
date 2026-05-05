@@ -17,18 +17,35 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Instalar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Instalar Allure CLI
+        run: |
+          curl -o allure.tgz -L https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          tar -zxvf allure.tgz
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+
       - name: Instalar dependências
         run: pip install -r requirements.txt
 
       - name: Rodar testes API
-        run: PYTHONPATH=. pytest api_tests -v --html=reports/api-report.html --self-contained-html
+        run: PYTHONPATH=. pytest api_tests -v --alluredir=allure-results
 
       - name: Rodar testes WEB
-        run: PYTHONPATH=. pytest web_tests -v --html=reports/web-report.html --self-contained-html
+        run: PYTHONPATH=. pytest web_tests -v --alluredir=allure-results
 
-      - name: Upload relatórios
+      - name: Gerar relatório Allure
+        if: always()
+        run: allure generate allure-results --clean -o allure-report
+
+      - name: Upload relatório Allure
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
-          path: reports/
+          name: allure-report
+          path: allure-report/
