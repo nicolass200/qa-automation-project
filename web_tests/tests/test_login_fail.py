@@ -7,7 +7,7 @@ class TestLoginFail(BaseTest):
     def test_invalid_login(self):
         login = LoginPage(self.driver)
 
-        login.login("usuario_errado", "senha_errada")
+        login.invalid_login("usuario_errado", "senha_errada")
 
         error = self.driver.find_element(By.CLASS_NAME, "error-message-container").text
 
