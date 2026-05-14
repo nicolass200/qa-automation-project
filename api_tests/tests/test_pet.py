@@ -2,7 +2,6 @@ from api_tests.services.pet_service import PetService
 
 PET_ID = 3001
 
-
 def test_create_update_get_pet():
     pet = {
         "id": PET_ID,
